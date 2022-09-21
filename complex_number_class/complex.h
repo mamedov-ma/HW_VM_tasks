@@ -25,9 +25,15 @@ class Complex {
         float get_imag() const;
         float get_abs() const;               
 
-        const Complex &operator=(const Complex&);   // = operator overloading
+        const Complex& operator=(const Complex&);   // assignment operator decloration
 
-        // ariphmetic operators overloading
+        // unary operators decloration
+        const Complex& operator++();   // Prefix increment operator
+        const Complex& operator--();   // Prefix decrement operator
+        Complex operator++(int);       // Postfix increment operator
+        Complex operator--(int);       // Postfix decrement operator
+
+        // ariphmetic operators decloration
         Complex operator+ (const Complex&);
         Complex operator+ (float);
 
@@ -40,11 +46,11 @@ class Complex {
         Complex operator/ (const Complex&);
         Complex operator/ (float);
         
-        // logical operators overloading
+        // logical operators decloration
         bool operator==(const Complex&);    
         bool operator!=(const Complex&);
         bool operator> (const Complex&);
         bool operator< (const Complex&);
 };
 
-ostream& operator<<(ostream&, const Complex&);    //output overloading (NOT IN Complex)!
+ostream& operator<<(ostream&, const Complex&);    //output operator decloration (NOT IN Complex)!

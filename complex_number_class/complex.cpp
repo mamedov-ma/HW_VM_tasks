@@ -25,6 +25,30 @@ const Complex& Complex::operator=(const Complex& orig)
     return *this;
 }
 
+const Complex& Complex::operator++()
+{
+    real++;
+    return *this;
+}
+
+const Complex& Complex::operator--()
+{
+    real --;
+    return *this;
+}
+
+Complex Complex::operator++(int)
+{
+    Complex res(real++, imag);
+    return res;
+}
+
+Complex Complex::operator--(int)
+{
+    Complex res(real--, imag);
+    return res;
+}
+
 void Complex::set_real(float n)
 {
     real = n;
@@ -73,7 +97,6 @@ Complex Complex::operator-(float val)
     Complex res(real - val, imag);
     return res;
 }
-
 
 Complex Complex::operator* (const Complex& complex)
 {

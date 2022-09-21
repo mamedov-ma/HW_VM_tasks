@@ -9,7 +9,7 @@ int main()
     Complex a, b, c;
     a.set_real(5);
     a.set_imag(7);
-    b = a;
+    b = a++;
     c = a + b;
     cout << a << endl;
     cout << b << endl;
