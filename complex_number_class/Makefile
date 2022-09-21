@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-c -Wall
 LDFLAGS=
-SOURCES=main.cpp complex.cpp 
+SOURCES=test.cpp complex.cpp 
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=complex
 

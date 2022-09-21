@@ -2,7 +2,8 @@
 #include <cmath>
 using namespace std;
 
-#define eps 10-7
+#define eps 10-7       // Сomparison accuracy
+
 
 class Complex {   
    
@@ -24,24 +25,26 @@ class Complex {
         float get_imag() const;
         float get_abs() const;               
 
-        const Complex &operator=(const Complex&);
+        const Complex &operator=(const Complex&);   // = operator overloading
 
+        // ariphmetic operators overloading
         Complex operator+ (const Complex&);
         Complex operator+ (float);
 
         Complex operator- (const Complex&);
         Complex operator- (float);
-        
+    
         Complex operator* (const Complex&);
         Complex operator* (float);
-
+        
         Complex operator/ (const Complex&);
         Complex operator/ (float);
         
-        bool operator==(const Complex&);
+        // logical operators overloading
+        bool operator==(const Complex&);    
         bool operator!=(const Complex&);
         bool operator> (const Complex&);
         bool operator< (const Complex&);
 };
 
-ostream& operator<<(ostream&, const Complex&);    //output overloading
+ostream& operator<<(ostream&, const Complex&);    //output overloading (NOT IN Complex)!
