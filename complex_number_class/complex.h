@@ -14,15 +14,15 @@ class Complex {
 
     public: 
 
-        Complex();
-        Complex(float x, float y);
-        Complex(const Complex&);
+        Complex();                           //default constructor
+        Complex(float x, float y);           //constructor with arguments
+        Complex(const Complex&);             //copy constructor
         
-        void set_real(float n);
+        void set_real(float n);                 
         void set_imag(float n);
         float get_real() const;
         float get_imag() const;
-        float get_abs() const;
+        float get_abs() const;               
 
         const Complex &operator=(const Complex&);
 
@@ -44,4 +44,4 @@ class Complex {
         bool operator< (const Complex&);
 };
 
-ostream& operator<<(ostream&, const Complex&);
+ostream& operator<<(ostream&, const Complex&);    //output overloading
