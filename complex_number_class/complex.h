@@ -15,12 +15,11 @@ class Complex {
 
     public: 
 
-        Complex();                           //default constructor
-        Complex(float x, float y);           //constructor with arguments
-        Complex(const Complex&);             //copy constructor
+        Complex();                           // default constructor
+        Complex(float x);                    // constructor with one argument 
+        Complex(float x, float y);           // constructor with two arguments
+        Complex(const Complex&);             // copy constructor
         
-        void set_real(float n);                 
-        void set_imag(float n);
         float get_real() const;
         float get_imag() const;
         float get_abs() const;               

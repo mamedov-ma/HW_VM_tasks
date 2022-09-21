@@ -6,9 +6,7 @@ using namespace std;
 int main()
 {
 
-    Complex a, b, c;
-    a.set_real(5);
-    a.set_imag(7);
+    Complex a(5, 7), b, c; 
     b = a++;
     c = a + b;
     cout << a << endl;

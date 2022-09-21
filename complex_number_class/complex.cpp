@@ -6,6 +6,12 @@ Complex::Complex()
     imag = 0;
 }
 
+Complex::Complex(float x)
+{
+    real = x;
+    imag = 0;
+}
+
 Complex::Complex(float x, float y)
 {
     real = x;
@@ -47,16 +53,6 @@ Complex Complex::operator--(int)
 {
     Complex res(real--, imag);
     return res;
-}
-
-void Complex::set_real(float n)
-{
-    real = n;
-}
-
-void Complex::set_imag(float n)
-{
-    imag = n;
 }
 
 float Complex::get_real() const
