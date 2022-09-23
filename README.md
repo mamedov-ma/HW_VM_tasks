@@ -1,1 +1,1 @@
-# Projects and tasks from Huawei virtual machine course
+# Projects and tasks from Huawei's virtual machine course
