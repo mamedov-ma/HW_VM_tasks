@@ -2,8 +2,8 @@
 
 using namespace complex_math;
 
-#define     print_log(state, n);    if(state){std::cout << "test " << n << " passed" << std::endl;}\
-                                    else{std::cout << "test " << n << " FAILED !!!" << std::endl;}
+#define     print_log(state, n);    if(state){std::cout << "passed test " << n << std::endl;}\
+                                    else{std::cout << "!!! FAILED test " << n << std::endl;}
     
 
 void Test1()
