@@ -1,9 +1,9 @@
 #include <iostream>
 #include <cmath>
-using namespace std;
 
-#define eps 10-7       // Сomparison accuracy
+#define eps 10e-7       // Сomparison accuracy
 
+namespace complex_math{
 
 class Complex {   
    
@@ -19,7 +19,7 @@ class Complex {
         Complex(float x);                    // constructor with one argument 
         Complex(float x, float y);           // constructor with two arguments
         Complex(const Complex&);             // copy constructor
-        
+
         float get_real() const;
         float get_imag() const;
         float get_abs() const;               
@@ -46,10 +46,15 @@ class Complex {
         Complex operator/ (float);
         
         // logical operators decloration
-        bool operator==(const Complex&);    
+        bool operator==(const Complex&);   
         bool operator!=(const Complex&);
         bool operator> (const Complex&);
         bool operator< (const Complex&);
+
+        friend std::ostream& operator<<(std::ostream&, const Complex&);    //output operator decloration
+
 };
 
-ostream& operator<<(ostream&, const Complex&);    //output operator decloration (NOT IN Complex)!
+
+
+} // namespace

@@ -3,10 +3,9 @@ CFLAGS=-c -Wall
 LDFLAGS=
 SOURCES=test.cpp complex.cpp 
 OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=complex
+EXECUTABLE=tests
 
 all: $(SOURCES) $(EXECUTABLE)
-	make clean
 	
 $(EXECUTABLE): $(OBJECTS) 
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
@@ -15,4 +14,8 @@ $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(CFLAGS) $< -o $@
 
 clean:
-	rm -f $(OBJECTS)
+	rm -f $(OBJECTS) $(EXECUTABLE)
+
+check: tests
+	./tests
+
