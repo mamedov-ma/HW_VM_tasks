@@ -37,7 +37,7 @@ class Complex {
         const Complex operator+ (const Complex&);
         const Complex operator+ (float);
 
-        const Complex operator- (const Complex&#define eps 10e-7       // Сomparison accuracy);
+        const Complex operator- (const Complex&);
         const Complex operator- (float);
     
         const Complex operator* (const Complex&);
