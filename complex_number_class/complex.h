@@ -9,41 +9,41 @@ class Complex {
    
     private:  
 
-        float real;    // To store real part of complex number  
-        float imag;    // To store imaginary part of complex number 
+        float real;    
+        float imag;    
 
 
     public: 
 
-        Complex();                           // default constructor
-        Complex(float x);                    // constructor with one argument 
-        Complex(float x, float y);           // constructor with two arguments
-        Complex(const Complex&);             // copy constructor
+        Complex();                         
+        Complex(float x);                   
+        Complex(float x, float y);          
+        Complex(const Complex&);            
 
         float get_real() const;
         float get_imag() const;
         float get_abs() const;               
 
-        const Complex& operator=(const Complex&);   // assignment operator decloration
+        const Complex& operator=(const Complex&);   
 
         // unary operators decloration
-        const Complex& operator++();   // Prefix increment operator
-        const Complex& operator--();   // Prefix decrement operator
-        Complex operator++(int);       // Postfix increment operator
-        Complex operator--(int);       // Postfix decrement operator
+        const Complex& operator++();   
+        const Complex& operator--();  
+        Complex operator++(int);       
+        Complex operator--(int);      
 
         // ariphmetic operators decloration
-        Complex operator+ (const Complex&);
-        Complex operator+ (float);
+        const Complex operator+ (const Complex&);
+        const Complex operator+ (float);
 
-        Complex operator- (const Complex&);
-        Complex operator- (float);
+        const Complex operator- (const Complex&);
+        const Complex operator- (float);
     
-        Complex operator* (const Complex&);
-        Complex operator* (float);
+        const Complex operator* (const Complex&);
+        const Complex operator* (float);
         
-        Complex operator/ (const Complex&);
-        Complex operator/ (float);
+        const Complex operator/ (const Complex&);
+        const Complex operator/ (float);
         
         // logical operators decloration
         bool operator==(const Complex&);   
@@ -51,7 +51,7 @@ class Complex {
         bool operator> (const Complex&);
         bool operator< (const Complex&);
 
-        friend std::ostream& operator<<(std::ostream&, const Complex&);    //output operator decloration
+        friend std::ostream& operator<<(std::ostream&, const Complex&);    
 
 };
 
