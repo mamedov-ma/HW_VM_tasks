@@ -2,16 +2,18 @@
 
 using namespace complex_math;
 
-#define     print_log(state, n);    if(state){std::cout << "passed test " << n << std::endl;}\
-                                    else{std::cout << "!!! FAILED test " << n << std::endl;}
-    
+
+void  print_log(bool state, int n)
+{
+    if(state){std::cout << "passed test " << n << std::endl;}\
+    else{std::cout << "!!! FAILED test " << n << std::endl;}
+}  
 
 void Test1()
 {
     Complex a;
-    Complex b(0);
     Complex c(0,0);
-    print_log((a == b) & (b == c), 1);
+    print_log((a == c), 1);
 }
 
 void Test2()
@@ -40,19 +42,19 @@ void Test4()
 void Test5()
 {
     Complex a(0, 0);
-    print_log((a.get_abs() - 0 < eps) & (a.get_real() - 0 < eps) & (a.get_imag() - 0 < eps), 5);
+    print_log((a.get_abs() - 0 < a.EPSILON) & (a.real - 0 < a.EPSILON) & (a.imag - 0 < a.EPSILON), 5);
 }
 
 void Test6()
 {
     Complex a(3, 4);
-    print_log((a.get_abs() - 5 < eps) & (a.get_real() - 3 < eps) & (a.get_imag() - 4 < eps), 6);
+    print_log((a.get_abs() - 5 < a.EPSILON) & (a.real - 3 < a.EPSILON) & (a.imag - 4 < a.EPSILON), 6);
 }
 
 void Test7()
 {
     Complex a(-3, -4);
-    print_log((a.get_abs() - 5 < eps) & (a.get_real() + 3 < eps) & (a.get_imag() + 4 < eps), 7);
+    print_log((a.get_abs() - 5 < a.EPSILON) & (a.real + 3 < a.EPSILON) & (a.imag + 4 < a.EPSILON), 7);
 }
 
 void Test8()
@@ -169,6 +171,13 @@ void Test22()
     print_log((a < b) & (b > a), 22);
 }
 
+void Test23()
+{
+    Complex a(3, 4);
+    Complex b = +a;
+    a = -a;
+    print_log(std::abs(a.real + b.real) < a.EPSILON, 23);
+}
 
 
 int main()
@@ -195,6 +204,7 @@ int main()
     Test20();
     Test21();
     Test22();
+    Test23();
     
     return 0;
 }

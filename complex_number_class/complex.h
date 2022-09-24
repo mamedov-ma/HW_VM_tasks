@@ -2,60 +2,47 @@
 #include <cmath>
 
 
-namespace complex_math{
-   
-const float eps = 10e-7       // Сomparison accuracy
+namespace complex_math
+{
 
-class Complex {   
-   
-    private:  
+struct Complex
+{
+    const float EPSILON = 10e-7;    // Сomparison accuracy
 
-        float real;    
-        float imag;    
+    float real;    
+    float imag;    
 
+    Complex();                                           
+    Complex(float x, float y);          
+    Complex(const Complex&);            
 
-    public: 
+    float get_abs() const;               
 
-        Complex();                         
-        Complex(float x);                   
-        Complex(float x, float y);          
-        Complex(const Complex&);            
+    const Complex& operator=(const Complex&);   
 
-        float get_real() const;
-        float get_imag() const;
-        float get_abs() const;               
+    const Complex& operator++();   
+    const Complex& operator--();  
+    Complex operator++(int);       
+    Complex operator--(int);      
 
-        const Complex& operator=(const Complex&);   
+    Complex operator+ (const Complex&) const;
+    Complex operator+ (float) const;
+    Complex operator+ () const;
 
-        // unary operators decloration
-        const Complex& operator++();   
-        const Complex& operator--();  
-        Complex operator++(int);       
-        Complex operator--(int);      
+    Complex operator- (const Complex&) const;
+    Complex operator- (float) const;
+    Complex operator- () const;
 
-        // ariphmetic operators decloration
-        const Complex operator+ (const Complex&);
-        const Complex operator+ (float);
-
-        const Complex operator- (const Complex&);
-        const Complex operator- (float);
+    Complex operator* (const Complex&) const;
+    Complex operator* (float) const;
     
-        const Complex operator* (const Complex&);
-        const Complex operator* (float);
-        
-        const Complex operator/ (const Complex&);
-        const Complex operator/ (float);
-        
-        // logical operators decloration
-        bool operator==(const Complex&);   
-        bool operator!=(const Complex&);
-        bool operator> (const Complex&);
-        bool operator< (const Complex&);
-
-        friend std::ostream& operator<<(std::ostream&, const Complex&);    
-
+    Complex operator/ (const Complex&) const;
+    Complex operator/ (float) const;
+    
+    bool operator==(const Complex&);   
+    bool operator!=(const Complex&);
+    bool operator> (const Complex&);
+    bool operator< (const Complex&);
 };
 
-
-
-} // namespace
+} // namespace complex_math

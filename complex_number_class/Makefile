@@ -6,6 +6,8 @@ OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=tests
 
 all: $(SOURCES) $(EXECUTABLE)
+	./tests
+	make clean
 	
 $(EXECUTABLE): $(OBJECTS) 
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
@@ -16,6 +18,5 @@ $(EXECUTABLE): $(OBJECTS)
 clean:
 	rm -f $(OBJECTS) $(EXECUTABLE)
 
-check: tests
-	./tests
+	
 

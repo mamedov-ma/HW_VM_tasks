@@ -1,40 +1,11 @@
 #include"complex.h"
 
-namespace complex_math{
-
-Complex::Complex()
+namespace complex_math
 {
-    real = 0;
-    imag = 0;
-}
 
-Complex::Complex(float x)
-{
-    real = x;
-    imag = 0;
-}
-
-Complex::Complex(float x, float y)
-{
-    real = x;
-    imag = y;
-}
-
-Complex::Complex(const Complex& orig)
-{
-    real = orig.real;
-    imag = orig.imag;
-}
-
-float Complex::get_real() const
-{
-    return real;
-}
-
-float Complex::get_imag() const
-{
-    return imag;
-}
+Complex::Complex(): real(0), imag(0) {}
+Complex::Complex(float x, float y): real(x), imag(y) {}
+Complex::Complex(const Complex& orig): real(orig.real), imag(orig.imag) {}
 
 float Complex::get_abs() const
 {
@@ -56,66 +27,80 @@ const Complex& Complex::operator++()
 
 const Complex& Complex::operator--()
 {
-    real --;
+    real--;
     return *this;
 }
 
 Complex Complex::operator++(int)
 {
-    Complex res(real++, imag);
+    Complex res(real, imag);
+    real++;
     return res;
 }
 
 Complex Complex::operator--(int)
 {
-    Complex res(real--, imag);
+    Complex res(real, imag);
+    real--;
     return res;
 }
 
-Complex Complex::operator+(const Complex& complex)
+Complex Complex::operator+(const Complex& complex) const
 {
     Complex res(real + complex.real, imag + complex.imag);
     return res; 
 }
 
-Complex Complex::operator+(float val)
+Complex Complex::operator+(float val) const
 {
-    Complex res(real += val, imag);
+    Complex res(real + val, imag);
     return res;
 }
 
-Complex Complex::operator-(const Complex& complex)
+Complex Complex::operator+() const
+{
+    Complex res(real, imag);
+    return res;
+}
+
+Complex Complex::operator-(const Complex& complex) const
 {
     Complex res(real - complex.real, imag - complex.imag);
     return res;
 }
 
-Complex Complex::operator-(float val)
+Complex Complex::operator-(float val) const
 {
     Complex res(real - val, imag);
     return res;
 }
 
-Complex Complex::operator* (const Complex& complex)
+Complex Complex::operator-() const
+{
+    Complex res(-real, -imag);
+    return res;
+}
+
+Complex Complex::operator* (const Complex& complex) const
 {
     Complex res(real * complex.real - imag * complex.imag, real * complex.imag + imag * complex.real);
     return res;
 }
 
-Complex Complex::operator* (float val)
+Complex Complex::operator* (float val) const
 {
     Complex res(real * val, imag * val);
     return res;
 }
 
-Complex Complex::operator/ (const Complex& complex)
+Complex Complex::operator/ (const Complex& complex) const
 {
     float denominator = complex.real * complex.real + complex.imag * complex.imag;
     Complex res((real * complex.real + imag * complex.imag) / denominator, (imag * complex.real - real * complex.imag) / denominator);
     return res;
 }
 
-Complex Complex::operator/ (float val)
+Complex Complex::operator/ (float val) const
 {
     Complex res(real / val, imag / val);
     return res;
@@ -123,12 +108,12 @@ Complex Complex::operator/ (float val)
 
 bool Complex::operator==(const Complex& complex)
 {
-    return (std::abs(real - complex.real) < eps) && (std::abs(imag - complex.imag) < eps);
+    return (std::abs(real - complex.real) < EPSILON) && (std::abs(imag - complex.imag) < EPSILON);
 }
 
 bool Complex::operator!=(const Complex& complex)
 {
-    return (std::abs(real - complex.real) > eps) || (std::abs(imag - complex.imag) > eps);
+    return (std::abs(real - complex.real) > EPSILON) || (std::abs(imag - complex.imag) > EPSILON);
 }
 
 bool Complex::operator> (const Complex& complex)
@@ -141,20 +126,4 @@ bool Complex::operator< (const Complex& complex)
     return this->get_abs() < complex.get_abs();
 }
 
-
-std::ostream& operator<<(std::ostream& out, const Complex& complex)
-{
-    if(complex.get_imag() < 0)
-    { 
-        out << complex.get_real() << complex.get_imag() << "j";
-        return out;
-    }
-    else
-    {
-        out << complex.get_real() << "+" << complex.get_imag() << "j";
-        return out;
-    }
-}
-
-
-} // namespace
+} // namespace complex_math
