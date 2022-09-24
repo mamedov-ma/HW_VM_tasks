@@ -1,12 +1,18 @@
-#include"complex.h"
+#include "complex.h"
 
 using namespace complex_math;
 
 
 void  print_log(bool state, int n)
 {
-    if(state){std::cout << "passed test " << n << std::endl;}\
-    else{std::cout << "!!! FAILED test " << n << std::endl;}
+    if(state)
+    {
+        std::cout << "passed test " << n << std::endl;
+    }
+    else
+    {
+        std::cout << "!!! FAILED test " << n << std::endl;
+    }
 }  
 
 void Test1()

@@ -39,10 +39,10 @@ struct Complex
     Complex operator/ (const Complex&) const;
     Complex operator/ (float) const;
     
-    bool operator==(const Complex&);   
-    bool operator!=(const Complex&);
-    bool operator> (const Complex&);
-    bool operator< (const Complex&);
+    bool operator==(const Complex&) const;
+    bool operator!=(const Complex&) const;
+    bool operator> (const Complex&) const;
+    bool operator< (const Complex&) const;
 };
 
 } // namespace complex_math

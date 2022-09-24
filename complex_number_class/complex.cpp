@@ -1,4 +1,4 @@
-#include"complex.h"
+#include "complex.h"
 
 namespace complex_math
 {
@@ -106,22 +106,22 @@ Complex Complex::operator/ (float val) const
     return res;
 }
 
-bool Complex::operator==(const Complex& complex)
+bool Complex::operator==(const Complex& complex) const
 {
     return (std::abs(real - complex.real) < EPSILON) && (std::abs(imag - complex.imag) < EPSILON);
 }
 
-bool Complex::operator!=(const Complex& complex)
+bool Complex::operator!=(const Complex& complex) const
 {
     return (std::abs(real - complex.real) > EPSILON) || (std::abs(imag - complex.imag) > EPSILON);
 }
 
-bool Complex::operator> (const Complex& complex)
+bool Complex::operator> (const Complex& complex) const
 {
     return this->get_abs() > complex.get_abs();
 }
 
-bool Complex::operator< (const Complex& complex)
+bool Complex::operator< (const Complex& complex) const
 {
     return this->get_abs() < complex.get_abs();
 }
