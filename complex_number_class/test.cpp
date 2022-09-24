@@ -5,14 +5,12 @@ using namespace complex_math;
 
 void  print_log(bool state, int n)
 {
-    if(state)
-    {
-        std::cout << "passed test " << n << std::endl;
-    }
-    else
-    {
+    if(!state)
+    {  
         std::cout << "!!! FAILED test " << n << std::endl;
     }
+     
+    std::cout << "passed test " << n << std::endl;
 }  
 
 void Test1()
