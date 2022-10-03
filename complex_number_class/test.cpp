@@ -25,7 +25,7 @@ void Test2()
 {
     Complex a(1, 2);
     Complex b = a;
-    print_log(a != b, 2);   
+    print_log(a == b, 2);   
 }
 
 void Test3()

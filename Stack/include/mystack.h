@@ -126,4 +126,10 @@ bool MyStack<T>::is_full() const
     return 0;
 }
 
+template <typename T>
+MyStack<T>::~MyStack()
+{
+    delete[] data_;
+}
+
 } // namespace my_stack
