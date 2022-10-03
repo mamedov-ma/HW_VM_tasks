@@ -5,7 +5,7 @@
 namespace my_stack
 {
 
-template <typename T>
+template <> 
 class MyStack
 {
 

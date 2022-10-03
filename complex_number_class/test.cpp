@@ -8,6 +8,7 @@ void  print_log(bool state, int n)
     if(!state)
     {  
         std::cout << "!!! FAILED test " << n << std::endl;
+        exit(EXIT_FAILURE);
     }
      
     std::cout << "passed test " << n << std::endl;
@@ -24,7 +25,7 @@ void Test2()
 {
     Complex a(1, 2);
     Complex b = a;
-    print_log(a == b, 2);   
+    print_log(a != b, 2);   
 }
 
 void Test3()
@@ -210,6 +211,6 @@ int main()
     Test22();
     Test23();
     
-    return 0;
+    return EXIT_SUCCESS;
 }
 
