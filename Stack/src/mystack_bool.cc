@@ -1,12 +1,12 @@
-#include <iostream>
+#include "mystack.hh"
 
 
 
 namespace my_stack
 {
 
-template <typename T> 
-class MyStack
+template <> 
+class MyStack<bool>
 {
     public:
 
@@ -19,8 +19,8 @@ class MyStack
         const MyStack& operator=(const MyStack& other);
         const MyStack& operator=(MyStack&& other);
 
-        const T& top() const;
-        void push(T);
+        bool top() const;
+        void push(bool);
         void pop();
 
         bool is_empty() const;
@@ -31,40 +31,32 @@ class MyStack
 
     public:
 
-        const size_t DEFAULT_STACK_SIZE = 100;
+        const size_t DEFAULT_STACK_SIZE = 8;
         const int RESIZE_COEFF = 2;
 
     private:
 
         size_t capacity_;
         size_t size_;
-        T* data_;
+        unsigned char* data_;
 };
 
-
 } // namespace my_stack
-
-
-
 
 namespace my_stack
 {
 
-template <typename T>
-MyStack<T>::MyStack(): capacity_(DEFAULT_STACK_SIZE), size_(0), data_(new T[capacity_]) {}
+MyStack<bool>::MyStack(): capacity_(DEFAULT_STACK_SIZE), size_(0), data_(new unsigned char[std::ceil(capacity_ / CHAR_BIT)]) {}
 
-template <typename T>
-MyStack<T>::MyStack(size_t capacity): capacity_(capacity), size_(0), data_(new T[capacity_]) {}
+MyStack<bool>::MyStack(size_t capacity): capacity_(capacity), size_(0), data_(new unsigned char[std::ceil(capacity_ / CHAR_BIT)]) {}
 
-template <typename T>
-MyStack<T>::MyStack(const MyStack& other): capacity_(other.capacity_), size_(other.size_)  
+MyStack<bool>::MyStack(const MyStack& other): capacity_(other.capacity_), size_(other.size_)  
 {
-    data_ = new T[capacity_];    
-    std::copy(other.data_, other.data_ + size_, data_);
+    data_ = new unsigned char[std::ceil(capacity_ / CHAR_BIT)];    
+    std::copy(other.data_, other.data_ + std::ceil(size_ / CHAR_BIT), data_);
 }
 
-template <typename T>
-MyStack<T>::MyStack(MyStack<T>&& other)
+MyStack<bool>::MyStack(MyStack<bool>&& other)   // EQUAL
 {
     capacity_ = other.capacity_;
     size_ = other.size_;
@@ -72,8 +64,7 @@ MyStack<T>::MyStack(MyStack<T>&& other)
     other.data_ = nullptr;
 }
 
-template <typename T>
-const MyStack<T>& MyStack<T>::operator=(const MyStack<T>& other)
+const MyStack<bool>& MyStack<bool>::operator=(const MyStack<bool>& other)
 {
     if (data_ == other.data_)
     {
@@ -82,13 +73,12 @@ const MyStack<T>& MyStack<T>::operator=(const MyStack<T>& other)
     size_ = other.size_;
     capacity_ = other.capacity_;
     delete[] data_;
-    data_ = new T[size_];    
-    std::copy(other.data_, other.data_ + size_, data_);
+    data_ = new unsigned char[std::ceil(capacity_ / CHAR_BIT)];    
+    std::copy(other.data_, other.data_ + std::ceil(size_ / CHAR_BIT), data_);
     return *this;
 }
 
-template <typename T>
-const MyStack<T>& MyStack<T>::operator=(MyStack<T>&& other)
+const MyStack<bool>& MyStack<bool>::operator=(MyStack<bool>&& other)    // EQUAL
 {
     if (data_ == other.data_)
     {
@@ -102,8 +92,7 @@ const MyStack<T>& MyStack<T>::operator=(MyStack<T>&& other)
     return *this;
 }
 
-template <typename T>
-const T& MyStack<T>::top() const
+bool MyStack<bool>::top() const
 {
     if (!is_empty()) 
     {
@@ -112,23 +101,22 @@ const T& MyStack<T>::top() const
     exit(EXIT_FAILURE);
 }
 
-template <typename T>
-void MyStack<T>::push(T node)
+void MyStack<bool>::push(bool elem)
 {
     if (is_full())
     {
         capacity_ *= RESIZE_COEFF;
-        T* allocated_memory = new T[capacity_];
+        unsigned char* allocated_memory = new unsigned char[capacity_];
         std::copy(data_, data_ + size_, allocated_memory);
         delete[] data_;
         data_ = allocated_memory;  
     }
-    data_[size_] = node;
+    data_[size_] = elem;
     size_++;
 }
 
-template <typename T>
-void MyStack<T>::pop()
+
+void MyStack<bool>::pop()
 {
     if (!is_empty())
     {
@@ -137,20 +125,17 @@ void MyStack<T>::pop()
     exit(EXIT_FAILURE);
 }
 
-template <typename T>
-bool MyStack<T>::is_empty() const
+bool MyStack<bool>::is_empty() const
 {
     return size_ == 0;
 }
     
-template <typename T>
-bool MyStack<T>::is_full() const
+bool MyStack<bool>::is_full() const
 {
     return size_ == capacity_;
 }
 
-template <typename T>
-MyStack<T>::~MyStack()
+MyStack<bool>::~MyStack()
 {
     delete[] data_;
 }
