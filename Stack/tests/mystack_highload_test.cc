@@ -1,8 +1,10 @@
-#include"mystack.hh"
+#include <cassert>
+#include "mystack.hh"
 
 using namespace my_stack;
 
-int main(){
+int main()
+{
     size_t data_size = 0;
     std::cin >> data_size;
 
@@ -14,7 +16,9 @@ int main(){
         std::cin >> elem;
         test_stack.push(elem);
     }
-    std::cout << test_stack.get_size() << std::endl;
+    
+    assert(test_stack.get_size() == data_size);
+
     return 0;
 }
 

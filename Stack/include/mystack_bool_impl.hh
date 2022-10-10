@@ -1,9 +1,10 @@
+#pragma once
 
 
 namespace my_stack
 {
 
-MyStack<bool>::MyStack(): capacity_(DEFAULT_STACK_SIZE), size_(0), data_(new unsigned char[(size_t)std::ceil(capacity_ / CHAR_BIT)]) {}
+MyStack<bool>::MyStack(): capacity_(DEFAULT_CAPACITY), size_(0), data_(new unsigned char[(size_t)std::ceil(capacity_ / CHAR_BIT)]) {}
 
 MyStack<bool>::MyStack(size_t capacity): capacity_(capacity), size_(0), data_(new unsigned char[(size_t)std::ceil(capacity_ / CHAR_BIT)]) {}
 
@@ -49,15 +50,6 @@ const MyStack<bool>& MyStack<bool>::operator=(MyStack<bool>&& other)
     return *this;
 }
 
-bool MyStack<bool>::top() const
-{
-    if (!is_empty()) 
-    {
-        return data_[size_ - 1] & (1 << (((size_ - 1) % CHAR_BIT))); //?????????????
-    }
-    std::cout << "CALLING TOP FOR EMPTY STACK!!!"<<std::endl;
-}
-
 void MyStack<bool>::push(bool elem)
 {
     if (is_full())
@@ -72,7 +64,6 @@ void MyStack<bool>::push(bool elem)
     size_++;
 }
 
-
 void MyStack<bool>::pop()
 {
     if (!is_empty())
@@ -80,6 +71,17 @@ void MyStack<bool>::pop()
         size_--;
     }
     std::cout << "CALLING POP FOR EMPTY STACK!!!"<<std::endl;
+    exit(EXIT_FAILURE);
+}
+
+bool MyStack<bool>::top() const
+{
+    if (!is_empty()) 
+    {
+        return data_[size_ - 1] & (1 << (((size_ - 1) % CHAR_BIT))); //?????????????
+    }
+    std::cout << "CALLING TOP FOR EMPTY STACK!!!"<<std::endl;
+    exit(EXIT_FAILURE);
 }
 
 bool MyStack<bool>::is_empty() const
@@ -92,10 +94,19 @@ bool MyStack<bool>::is_full() const
     return size_ == capacity_;
 }
 
+size_t MyStack<bool>::get_size() const
+{
+    return size_;
+}
+
+size_t MyStack<bool>::get_capacity() const
+{
+    return capacity_;
+}
+
 MyStack<bool>::~MyStack()
 {
     delete[] data_;
 }
 
 } // namespace my_stack
-

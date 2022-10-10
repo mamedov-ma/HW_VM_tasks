@@ -21,10 +21,10 @@ class MyStack
         const MyStack& operator=(const MyStack&);
         const MyStack& operator=(MyStack&&);
 
-        T top() const;
         void push(T);
         void pop();
-
+        T top() const;
+        
         bool is_empty() const;
         bool is_full() const;
 
@@ -33,7 +33,7 @@ class MyStack
 
     public:
 
-        const size_t DEFAULT_STACK_SIZE = 1;
+        static constexpr size_t DEFAULT_CAPACITY = 8;
         static constexpr int RESIZE_COEFF = 2;
 
     private:
@@ -59,10 +59,10 @@ class MyStack<bool>
         const MyStack& operator=(const MyStack&);
         const MyStack& operator=(MyStack&&);
 
-        bool top() const;
         void push(bool);
         void pop();
-
+        bool top() const;
+        
         bool is_empty() const;
         bool is_full() const;
 
@@ -71,7 +71,7 @@ class MyStack<bool>
 
     public:
 
-        const size_t DEFAULT_STACK_SIZE = 8;
+        const size_t DEFAULT_CAPACITY = 8;
         static constexpr int RESIZE_COEFF = 2;
 
     private:

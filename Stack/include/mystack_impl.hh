@@ -1,10 +1,11 @@
+#pragma once
 
 
 namespace my_stack
 {
 
 template <typename T>
-MyStack<T>::MyStack(): capacity_(DEFAULT_STACK_SIZE), size_(0), data_(new T[capacity_]) {}
+MyStack<T>::MyStack(): capacity_(DEFAULT_CAPACITY), size_(0), data_(new T[capacity_]) {}
 
 template <typename T>
 MyStack<T>::MyStack(size_t capacity): capacity_(capacity), size_(0), data_(new T[capacity_]) {}
@@ -56,16 +57,6 @@ const MyStack<T>& MyStack<T>::operator=(MyStack<T>&& other)
 }
 
 template <typename T>
-T MyStack<T>::top() const
-{
-    if (!is_empty()) 
-    {
-        return data_[size_ - 1];
-    }
-    std::cout << "CALLING TOP OF EMPTY STACK!!!"<<std::endl;
-}
-
-template <typename T>
 void MyStack<T>::push(T elem)
 {
     if (is_full())
@@ -88,6 +79,18 @@ void MyStack<T>::pop()
         size_--;
     }
     std::cout << "CALLING POP FOR EMPTY STACK!!!"<<std::endl;
+    exit(EXIT_FAILURE);
+}
+
+template <typename T>
+T MyStack<T>::top() const
+{
+    if (!is_empty()) 
+    {
+        return data_[size_ - 1];
+    }
+    std::cout << "CALLING TOP OF EMPTY STACK!!!"<<std::endl;
+    exit(EXIT_FAILURE);
 }
 
 template <typename T>
@@ -100,6 +103,18 @@ template <typename T>
 bool MyStack<T>::is_full() const
 {
     return size_ == capacity_;
+}
+
+template <typename T>
+size_t MyStack<T>::get_size() const
+{
+    return size_;
+}
+
+template <typename T>
+size_t MyStack<T>::get_capacity() const
+{
+    return capacity_;
 }
 
 template <typename T>
