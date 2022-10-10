@@ -8,7 +8,7 @@ template <typename T>
 class MyStackTest: public ::testing::Test {};
 
 typedef testing::Types<bool, char, signed char, unsigned char, 
-wchar_t, short, unsigned short, int, unsigned int, long, unsigned long, 
+short, unsigned short, int, unsigned int, long, unsigned long, 
 long long, unsigned long long, float, double, long double> TestTypes; 
 
 TYPED_TEST_SUITE(MyStackTest, TestTypes);
