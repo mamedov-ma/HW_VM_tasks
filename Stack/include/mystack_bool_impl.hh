@@ -60,7 +60,14 @@ void MyStack<bool>::push(bool elem)
         delete[] data_;
         data_ = allocated_memory;  
     }
-    data_[size_] = elem;
+    if (elem)
+    {
+        data_[(size_t)std::ceil(size_ / CHAR_BIT)] |= elem << ((size_ - 1) % CHAR_BIT);
+    }
+    else
+    {
+        data_[(size_t)std::ceil(size_ / CHAR_BIT)] &= elem << ((size_ - 1) % CHAR_BIT);
+    }
     size_++;
 }
 
@@ -70,15 +77,18 @@ void MyStack<bool>::pop()
     {
         size_--;
     }
-    std::cout << "CALLING POP FOR EMPTY STACK!!!"<<std::endl;
-    exit(EXIT_FAILURE);
+    else
+    {
+        std::cout << "CALLING POP FOR EMPTY STACK!!!"<<std::endl;
+        exit(EXIT_FAILURE);
+    }
 }
 
 bool MyStack<bool>::top() const
 {
     if (!is_empty()) 
     {
-        return data_[size_ - 1] & (1 << (((size_ - 1) % CHAR_BIT))); //?????????????
+        return (data_[(size_t)std::ceil(size_ / CHAR_BIT) - 1] & (1 << ((size_ - 1) % CHAR_BIT))) >> ((size_ - 1) % CHAR_BIT); //?????????????
     }
     std::cout << "CALLING TOP FOR EMPTY STACK!!!"<<std::endl;
     exit(EXIT_FAILURE);
