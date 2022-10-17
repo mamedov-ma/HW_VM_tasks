@@ -1,5 +1,3 @@
-#pragma once
-
 
 namespace my_stack
 {
@@ -14,7 +12,7 @@ MyStack<bool>::MyStack(const MyStack& other): capacity_(other.capacity_), size_(
     std::copy(other.data_, other.data_ + (size_t)std::ceil(size_ / CHAR_BIT), data_);
 }
 
-MyStack<bool>::MyStack(MyStack<bool>&& other)
+MyStack<bool>::MyStack(MyStack<bool>&& other) noexcept
 {
     capacity_ = other.capacity_;
     size_ = other.size_;
@@ -36,7 +34,7 @@ const MyStack<bool>& MyStack<bool>::operator=(const MyStack<bool>& other)
     return *this;
 }
 
-const MyStack<bool>& MyStack<bool>::operator=(MyStack<bool>&& other)
+const MyStack<bool>& MyStack<bool>::operator=(MyStack<bool>&& other) noexcept
 {
     if (data_ == other.data_)
     {
@@ -54,7 +52,7 @@ void MyStack<bool>::push(bool elem)
 {
     if (is_full())
     {
-        capacity_ *= RESIZE_COEFF;
+        capacity_ = std::ceil(capacity_ * RESIZE_COEFF);
         unsigned char* allocated_memory = new unsigned char[(size_t)std::ceil(capacity_ / CHAR_BIT)];
         std::copy(data_, data_ + (size_t)std::ceil(size_ / CHAR_BIT), allocated_memory);
         delete[] data_;

@@ -1,23 +1,19 @@
 #include <cassert>
 #include "mystack.hh"
 
-using namespace my_stack;
 
 int main()
 {
-    size_t data_size = 0;
-    std::cin >> data_size;
+    const size_t DATA_SIZE = 1000000;
 
-    MyStack<float> test_stack;
-    float elem;
+    my_stack::MyStack<int> test_stack;
 
-    for (size_t i = 0; i < data_size; ++i)
+    for (int i = 0; i < DATA_SIZE; ++i)
     {
-        std::cin >> elem;
-        test_stack.push(elem);
+        test_stack.push(i);
     }
-    
-    assert(test_stack.get_size() == data_size);
+ 
+    assert(test_stack.get_size() == DATA_SIZE);
 
     return 0;
 }
