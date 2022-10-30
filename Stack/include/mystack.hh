@@ -32,8 +32,6 @@ class MyStack
         size_t get_size() const;
         size_t get_capacity() const;
 
-    public:
-
         static constexpr size_t DEFAULT_CAPACITY = 8;
         static constexpr float RESIZE_COEFF = 2;
 

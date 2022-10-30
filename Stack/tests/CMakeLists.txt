@@ -51,7 +51,7 @@ add_test( NAME UnitTests COMMAND
 )
 
 add_test( NAME SpeedTest COMMAND
-    sh -c "./${MYSTACK_HIGHLOAD_TEST_NAME} < ${GEN_OUTPUT_NAME}"
+    sh -c "./${MYSTACK_HIGHLOAD_TEST_NAME}"
 )
 set_tests_properties( SpeedTest PROPERTIES TIMEOUT 2 )
 
