@@ -1,3 +1,4 @@
+#include "mystack.hh"
 
 namespace my_stack
 {
@@ -86,7 +87,7 @@ bool MyStack<bool>::top() const
 {
     if (!is_empty()) 
     {
-        return (data_[(size_t)std::ceil(size_ / CHAR_BIT) - 1] & (1 << ((size_ - 1) % CHAR_BIT))) >> ((size_ - 1) % CHAR_BIT); //?????????????
+        return (data_[(size_t)std::ceil(size_ / CHAR_BIT) - 1] & (1 << ((size_ - 1) % CHAR_BIT))) >> ((size_ - 1) % CHAR_BIT); 
     }
     std::cout << "CALLING TOP FOR EMPTY STACK!!!"<<std::endl;
     exit(EXIT_FAILURE);

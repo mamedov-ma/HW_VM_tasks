@@ -1,9 +1,3 @@
-cmake_minimum_required(VERSION 3.11)
-project(MyStack VERSION 1.0)
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)  
-
 set( COMMON_FLAGS -Wall -Wextra -Wpedantic -Werror )
 set( DEBUG_FLAGS -O0 -g ${COMMON_FLAGS} )
 
@@ -30,19 +24,11 @@ target_include_directories( ${MYSTACK_HIGHLOAD_TEST_NAME} PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/../include"
 )
 
-set( MYSTACK_UTESTS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/mystack_utests" )
-
-set( MYSTACK_UTESTS_FILES
-    "tests_main.cc"
-)
-
-target_sources( ${MYSTACK_HIGHLOAD_TEST_NAME} PRIVATE
+target_sources( ${MYSTACK_HIGHLOAD_TEST_NAME} PRIVATE 
     "${CMAKE_CURRENT_SOURCE_DIR}/mystack_highload_test.cc"
 )
 
-foreach( FILE IN LISTS MYSTACK_UTESTS_FILES )
-    target_sources( ${MYSTACK_UTEST_NAME} PRIVATE "${MYSTACK_UTESTS_DIR}/${FILE}" )
-endforeach()
+target_sources( ${MYSTACK_UTEST_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/mystack_utests.cc" )
 
 enable_testing()
 

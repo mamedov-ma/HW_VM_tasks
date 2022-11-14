@@ -1,5 +1,5 @@
-#ifndef _INCLUDE_MYSTACK_HH_
-#define _INCLUDE_MYSTACK_HH_
+#ifndef MYSTACK_HH
+#define MYSTACK_HH
 
 #include <iostream>
 #include <climits>
@@ -67,8 +67,6 @@ class MyStack<bool>
         size_t get_size() const;
         size_t get_capacity() const;
 
-    public:
-
         const size_t DEFAULT_CAPACITY = 8;
         static constexpr float RESIZE_COEFF = 2;
 
@@ -80,8 +78,6 @@ class MyStack<bool>
 };
 
 } // namespace my_stack
-
-
 
 namespace my_stack
 {
@@ -207,4 +203,4 @@ MyStack<T>::~MyStack()
 
 } // namespace my_stack
 
-#endif //_INCLUDE_MYSTACK_HH_
+#endif 

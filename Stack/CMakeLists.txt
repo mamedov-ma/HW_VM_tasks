@@ -4,48 +4,41 @@ project(MyStack VERSION 1.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON) 
 
-set( COMMON_FLAGS -Wall -Wextra -Wpedantic -Werror )
-set( DEBUG_FLAGS -O0 -g ${COMMON_FLAGS} )
-
-option(ADD_TIDY "Activate clang-tidy" ON)
-option(ADD_FORMAT "Activate clang-format" ON)
-option(ADD_TESTING "Activate google-testing" ON)
-
 set(STACK_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/include)
-set(STACK_BOOL_IMPL mystack_bool_impl.cc)
-set(STACK_BOOL_IMPL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
+
+set(STACK_BOOL_SRC mystack_bool_impl.cc)
+set(STACK_BOOL_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 add_library(mystack INTERFACE)
 
 target_include_directories(mystack INTERFACE ${STACK_INCLUDES})
-target_sources(mystack INTERFACE ${STACK_BOOL_IMPL_DIR}/${STACK_BOOL_IMPL})
+target_sources(mystack INTERFACE ${STACK_BOOL_SRC_DIR}/${STACK_BOOL_SRC})
 
-if(ADD_TIDY)
-    set(CLANG_TIDY_FLAGS
-        clang-tidy;
-        --checks=*;
-        --header-filter=.;
-        --warning-as-errors=*;
-        --format-style=file;    
+find_program(CLANG_TIDY "clang-tidy")
+if (CLANG_TIDY)
+
+    add_custom_target(clang_tidy
+    COMMAND clang-tidy ${STACK_BOOL_SRC_DIR}/${STACK_BOOL_SRC} ${STACK_INCLUDES}/mystack.hh --format-style=file -- -I${STACK_INCLUDES}
     )
-    message(STATUS "clang-tidy ON")
+
+    message(STATUS "clang-tidy target ON")
+
+    else()
+    message(STATUS "clang-tidy target OFF")
+
 endif()
 
-if(ADD_FORMAT)
+find_program(CLANG_FORMAT "clang-format")
+if (CLANG_FORMAT)
     file(GLOB_RECURSE ALL_SOURCE_FILES *.cc *.hh)
-    add_custom_target(
-        format
-        COMMAND clang-format
-        -style=file
-        -i
-        ${ALL_SOURCE_FILES}
-    )
-    message(STATUS "clang-format ON")
+        add_custom_target(
+            format
+            COMMAND clang-format
+            -style=file
+            -i
+            ${ALL_SOURCE_FILES}
+        )
+        message(STATUS "clang-format target ON")
 endif()
 
-if(ADD_TESTING)
-    message(STATUS "testing ON")
-    add_subdirectory(tests)
-endif()
-
-
+add_subdirectory(tests)
