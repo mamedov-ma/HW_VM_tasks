@@ -7,8 +7,8 @@ message("include testing")
 set( MYSTACK_UTEST_NAME mystack_utests )
 add_executable( ${MYSTACK_UTEST_NAME} )
 
-set( MYSTACK_HIGHLOAD_TEST_NAME mystack_highload_test )
-add_executable( ${MYSTACK_HIGHLOAD_TEST_NAME} )
+set( MYSTACK_BIGDATA_TEST_NAME mystack_bigdata_test )
+add_executable( ${MYSTACK_BIGDATA_TEST_NAME} )
 
 target_link_libraries( ${MYSTACK_UTEST_NAME} PRIVATE
     "${GTEST_LIBRARIES}"
@@ -20,12 +20,12 @@ target_include_directories( ${MYSTACK_UTEST_NAME} PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/../include"
 )
 
-target_include_directories( ${MYSTACK_HIGHLOAD_TEST_NAME} PRIVATE
+target_include_directories( ${MYSTACK_BIGDATA_TEST_NAME} PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/../include"
 )
 
-target_sources( ${MYSTACK_HIGHLOAD_TEST_NAME} PRIVATE 
-    "${CMAKE_CURRENT_SOURCE_DIR}/mystack_highload_test.cc"
+target_sources( ${MYSTACK_BIGDATA_TEST_NAME} PRIVATE 
+    "${CMAKE_CURRENT_SOURCE_DIR}/mystack_bigdata_test.cc"
 )
 
 target_sources( ${MYSTACK_UTEST_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/mystack_utests.cc" )
@@ -37,7 +37,7 @@ add_test( NAME UnitTests COMMAND
 )
 
 add_test( NAME SpeedTest COMMAND
-    sh -c "./${MYSTACK_HIGHLOAD_TEST_NAME}"
+    sh -c "./${MYSTACK_BIGDATA_TEST_NAME}"
 )
 set_tests_properties( SpeedTest PROPERTIES TIMEOUT 2 )
 
@@ -45,6 +45,6 @@ if(ADD_SANITIZERS)
     message("Build with sanitizers")
     target_compile_options(${MYSTACK_UTEST_NAME} PUBLIC -fsanitize=address -g ${COMMON_FLAGS})
     set_target_properties(${MYSTACK_UTEST_NAME} PROPERTIES LINK_FLAGS "-fsanitize=address")
-    target_compile_options(${MYSTACK_HIGHLOAD_TEST_NAME} PUBLIC -fsanitize=address -g ${COMMON_FLAGS})
-    set_target_properties(${MYSTACK_HIGHLOAD_TEST_NAME} PROPERTIES LINK_FLAGS "-fsanitize=address")
+    target_compile_options(${MYSTACK_BIGDATA_TEST_NAME} PUBLIC -fsanitize=address -g ${COMMON_FLAGS})
+    set_target_properties(${MYSTACK_BIGDATA_TEST_NAME} PROPERTIES LINK_FLAGS "-fsanitize=address")
 endif()
